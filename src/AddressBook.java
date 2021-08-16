@@ -106,70 +106,69 @@ class AddressBookComputation{
 
 public class AddressBook {
 
-    Scanner sc=new Scanner(System.in);
-    public int number=0;
+    Scanner sc = new Scanner(System.in);
+    public int number = 0;
     public AddressBookComputation[] addressbook1array;
-    public AddressBook()
-    {
+
+    public AddressBook() {
         System.out.println("How many contacts do you want to add?");
-        int number=sc.nextInt();
-        addressbook1array=new AddressBookComputation[number];
-        for (int i=0;i<number;i++)
-        {
+        int number = sc.nextInt();
+        addressbook1array = new AddressBookComputation[number];
+        for (int i = 0; i < number; i++) {
             addContact();
         }
     }
-    public void addContact()
-    {
-        System.out.println("Enter First name");
-        String FirstName= sc.next();
-        System.out.println("Enter Last name");
-        String LastName= sc.next();
-        System.out.println("Enter address");
-        String Address= sc.next();
-        System.out.println("Enter city");
-        String City= sc.next();
-        System.out.println("Enter state");
-        String State= sc.next();
-        System.out.println("Enter zip code");
-        int ZipCode= sc.nextInt();
-        System.out.println("Enter phone number");
-        String PhoneNumber= sc.next();
-        System.out.println("Enter Email");
-        String Email= sc.next();
 
-        addressbook1array[number]=new AddressBookComputation(FirstName,LastName,Address,City,State,ZipCode,PhoneNumber,Email);
-        number++;
+    public void addContact() {
+
+            System.out.println("Enter First name");
+            String FirstName = sc.next();
+            System.out.println("Enter Last name");
+            String LastName = sc.next();
+            System.out.println("Enter address");
+            String Address = sc.next();
+            System.out.println("Enter city");
+            String City = sc.next();
+            System.out.println("Enter state");
+            String State = sc.next();
+            System.out.println("Enter zip code");
+            int ZipCode = sc.nextInt();
+            System.out.println("Enter phone number");
+            String PhoneNumber = sc.next();
+            System.out.println("Enter Email");
+            String Email = sc.next();
+
+            addressbook1array[number] = new AddressBookComputation(FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
+            number++;
 
     }
-    public void displayContact()
-    {
-        for(int i=0;i<addressbook1array.length;i++)
-        {
+
+    public void displayContact() {
+        for (int i = 0; i < addressbook1array.length; i++) {
             System.out.println(addressbook1array[i]);
         }
     }
 
     public void EditContact() {
         System.out.println("Enter contact no whose details you want to edit");
-        String Phonenumberedit=sc.next();
+        String Phonenumberedit = sc.next();
 
         for (int j = 0; j < number; j++) {
             if (Phonenumberedit.equals(addressbook1array[j].PhoneNumber)) {
                 System.out.println("Enter First name");
-                addressbook1array[j].FirstName= sc.next();
+                addressbook1array[j].FirstName = sc.next();
                 System.out.println("Enter Last name");
-                addressbook1array[j].LastName= sc.next();
+                addressbook1array[j].LastName = sc.next();
                 System.out.println("Enter address");
-                addressbook1array[j].Address= sc.next();
+                addressbook1array[j].Address = sc.next();
                 System.out.println("Enter city");
-                addressbook1array[j].City= sc.next();
+                addressbook1array[j].City = sc.next();
                 System.out.println("Enter state");
-                addressbook1array[j].State= sc.next();
+                addressbook1array[j].State = sc.next();
                 System.out.println("Enter zip code");
-                addressbook1array[j].ZipCode= sc.nextInt();
+                addressbook1array[j].ZipCode = sc.nextInt();
                 System.out.println("Enter Email");
-                addressbook1array[j].Email= sc.next();
+                addressbook1array[j].Email = sc.next();
 
 
             }
@@ -177,33 +176,58 @@ public class AddressBook {
 
     }
 
-    public void DeleteRecord(){
+    public void DeleteRecord() {
         System.out.println("Enter name whose contact you want to delete");
-        String firstname1=sc.next();
+        String firstname1 = sc.next();
         for (int j = 0; j < number; j++) {
             if (firstname1.equals(addressbook1array[j].FirstName)) {
-                addressbook1array[j].FirstName= "0";
-                addressbook1array[j].LastName="0";
-                addressbook1array[j].Address="0";
-                addressbook1array[j].City="0";
-                addressbook1array[j].State="0";
-                addressbook1array[j].ZipCode=0;
-                addressbook1array[j].Email="0";
-                addressbook1array[j].PhoneNumber="0";
+                addressbook1array[j].FirstName = "0";
+                addressbook1array[j].LastName = "0";
+                addressbook1array[j].Address = "0";
+                addressbook1array[j].City = "0";
+                addressbook1array[j].State = "0";
+                addressbook1array[j].ZipCode = 0;
+                addressbook1array[j].Email = "0";
+                addressbook1array[j].PhoneNumber = "0";
 
             }
-        }}
+        }
+    }
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         System.out.println("WELCOME TO ADDRESSBOOK!");
 
-        AddressBook Bookbuilder=new AddressBook();
+        AddressBook Bookbuilder = new AddressBook();
+
+        int end = 0;
+
+        while (end != 1) {
+            System.out.println("Select what do you want to do in address book /\n 1.Add contact /\n 2.DisplayContact /\n 3.Edit contact /\n 4.Delete Contact /\n 5.Exit");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    Bookbuilder.addContact();
+                    break;
+
+                case 2:
+                    Bookbuilder.displayContact();
+                    break;
+
+                case 3:
+                    Bookbuilder.EditContact();
+                    break;
+
+                case 4:
+                    Bookbuilder.DeleteRecord();
+                    break;
+
+                case 5:
+                    end = 1;
+                    break;
+            }
 
 
-
-        Bookbuilder.displayContact();
-        Bookbuilder.DeleteRecord();
-        Bookbuilder.displayContact();
-
-
+        }
     }
 }
