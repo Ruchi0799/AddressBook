@@ -102,37 +102,25 @@ class AddressBookComputation{
                 '}';
     }
 
-    /* public void PrintPersonDetails()
-    {
-        System.out.println(FirstName);
-        System.out.println(LastName);
-        System.out.println(Address);
-        System.out.println(City);
-        System.out.println(State);
-        System.out.println(ZipCode);
-        System.out.println(PhoneNumber);
-        System.out.println(Email);
-    } */
 }
 
 public class AddressBook {
-    public static void main(String[] args) {
-        System.out.println("WELCOME TO ADDRESSBOOK!");
-        AddressBookComputation addressBook[]=new AddressBookComputation[2];
-        AddressBookComputation book1=new AddressBookComputation("Ruchi","Mandve","Sanpada","Navi Mumbai","Maharashtra",400705,"9892735509","ruchimandve07@gmail.com");
-        AddressBookComputation book2=new AddressBookComputation("Prajakta","Tambe","Kalamboli","Panvel","Maharashtra",400703,"9987365780","prajtambe@gmail.com");
 
-        addressBook[0]=book1;
-        addressBook[1]=book2;
-
-        for (int i=0;i< addressBook.length;i++)
+    Scanner sc=new Scanner(System.in);
+    public int number=0;
+    public AddressBookComputation[] addressbook1array;
+    public AddressBook()
+    {
+        System.out.println("How many contacts do you want to add?");
+        int number=sc.nextInt();
+        addressbook1array=new AddressBookComputation[number];
+        for (int i=0;i<number;i++)
         {
-            System.out.println(addressBook[i]);
+            addContact();
         }
-
-
-
-        /* Scanner sc=new Scanner(System.in);
+    }
+    public void addContact()
+    {
         System.out.println("Enter First name");
         String FirstName= sc.next();
         System.out.println("Enter Last name");
@@ -146,12 +134,33 @@ public class AddressBook {
         System.out.println("Enter zip code");
         int ZipCode= sc.nextInt();
         System.out.println("Enter phone number");
-        long PhoneNumber= sc.nextLong();
+        String PhoneNumber= sc.next();
         System.out.println("Enter Email");
         String Email= sc.next();
-        AddPersonContact Ruchi=new AddPersonContact(FirstName,LastName,Address,City,State,ZipCode,PhoneNumber,Email);
-        Ruchi.PrintPersonDetails();
-        //Ruchi.AddPersonContact(FirstName,LastName,Address,City,State,ZipCode,PhoneNumber,Email); */
+
+        addressbook1array[number]=new AddressBookComputation(FirstName,LastName,Address,City,State,ZipCode,PhoneNumber,Email);
+        number++;
+
+    }
+    public void displayContact()
+    {
+        for(int i=0;i<addressbook1array.length;i++)
+        {
+            System.out.println(addressbook1array[i]);
+        }
+    }
+
+
+
+    public static void main(String[] args) {
+        System.out.println("WELCOME TO ADDRESSBOOK!");
+
+        AddressBook Bookbuilder=new AddressBook();
+
+
+
+        Bookbuilder.displayContact();
+
 
     }
 }
