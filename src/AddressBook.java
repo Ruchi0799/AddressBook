@@ -150,6 +150,33 @@ public class AddressBook {
         }
     }
 
+    public void EditContact() {
+        System.out.println("Enter contact no whose details you want to edit");
+        String Phonenumberedit=sc.next();
+
+        for (int j = 0; j < number; j++) {
+            if (Phonenumberedit.equals(addressbook1array[j].PhoneNumber)) {
+                System.out.println("Enter First name");
+                addressbook1array[j].FirstName= sc.next();
+                System.out.println("Enter Last name");
+                addressbook1array[j].LastName= sc.next();
+                System.out.println("Enter address");
+                addressbook1array[j].Address= sc.next();
+                System.out.println("Enter city");
+                addressbook1array[j].City= sc.next();
+                System.out.println("Enter state");
+                addressbook1array[j].State= sc.next();
+                System.out.println("Enter zip code");
+                addressbook1array[j].ZipCode= sc.nextInt();
+                System.out.println("Enter Email");
+                addressbook1array[j].Email= sc.next();
+
+
+            }
+        }
+
+    }
+
 
 
     public static void main(String[] args) {
@@ -159,6 +186,8 @@ public class AddressBook {
 
 
 
+        Bookbuilder.displayContact();
+        Bookbuilder.EditContact();
         Bookbuilder.displayContact();
 
 
