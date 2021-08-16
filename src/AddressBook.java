@@ -177,8 +177,22 @@ public class AddressBook {
 
     }
 
+    public void DeleteRecord(){
+        System.out.println("Enter name whose contact you want to delete");
+        String firstname1=sc.next();
+        for (int j = 0; j < number; j++) {
+            if (firstname1.equals(addressbook1array[j].FirstName)) {
+                addressbook1array[j].FirstName= "0";
+                addressbook1array[j].LastName="0";
+                addressbook1array[j].Address="0";
+                addressbook1array[j].City="0";
+                addressbook1array[j].State="0";
+                addressbook1array[j].ZipCode=0;
+                addressbook1array[j].Email="0";
+                addressbook1array[j].PhoneNumber="0";
 
-
+            }
+        }}
     public static void main(String[] args) {
         System.out.println("WELCOME TO ADDRESSBOOK!");
 
@@ -187,7 +201,7 @@ public class AddressBook {
 
 
         Bookbuilder.displayContact();
-        Bookbuilder.EditContact();
+        Bookbuilder.DeleteRecord();
         Bookbuilder.displayContact();
 
 
