@@ -60,27 +60,39 @@ public class AddressBookContact {
     public void scan(){
         System.out.print("Enter your first name :- ");
         firstName = sc.nextLine();
-        System.out.print("Enter your last name :- ");
-        lastName = sc.nextLine();
-        System.out.print("Enter your address :- ");
-        address = sc.nextLine();
-        System.out.print("Enter your city :- ");
-        city = sc.nextLine();
-        System.out.print("Enter your state:- ");
-        state = sc.nextLine();
-        System.out.print("Enter your zip code :- ");
-        zipCode = sc.nextLine();
-        System.out.print("Enter your phone number :- ");
-        phoneNumber = sc.nextLine();
-        System.out.print("Enter your email :- ");
-        email = sc.nextLine();
+
+
+            //System.out.println("Contact already present");
+
+
+            System.out.print("Enter your last name :- ");
+            lastName = sc.nextLine();
+            System.out.print("Enter your address :- ");
+            address = sc.nextLine();
+            System.out.print("Enter your city :- ");
+            city = sc.nextLine();
+            System.out.print("Enter your state:- ");
+            state = sc.nextLine();
+            System.out.print("Enter your zip code :- ");
+            zipCode = sc.nextLine();
+            System.out.print("Enter your phone number :- ");
+            phoneNumber = sc.nextLine();
+            System.out.print("Enter your email :- ");
+            email = sc.nextLine();
+
     }
 
     public void addContact(){
         System.out.println("Enter the details of contact :- ");
         scan();
         AddressBookContact ab = new AddressBookContact(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
-        book.add(ab);
+        boolean value=checkDuplicateContact(firstName);
+        if(value==true) {
+            System.out.println("Contact already present");
+        }
+        else {
+            book.add(ab);
+        }
     }
 
     public void editContact(){
@@ -96,6 +108,19 @@ public class AddressBookContact {
         AddressBookContact abc = new AddressBookContact(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
         book.set(i,abc);
     }
+
+    public boolean checkDuplicateContact(String firstName){
+
+        int i;
+        for (i=0 ; i<book.size(); i++){
+            if (book.get(i).firstName.equals(this.firstName)){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 
     public void deleteContact(){
         System.out.print("Enter name of person whose you want to delete :- ");
