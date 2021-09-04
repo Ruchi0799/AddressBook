@@ -60,37 +60,56 @@ public class AddressBookContact {
     public void scan(){
         System.out.print("Enter your first name :- ");
         firstName = sc.nextLine();
+        System.out.print("Enter your last name :- ");
+        lastName = sc.nextLine();
+        System.out.print("Enter your address :- ");
+        address = sc.nextLine();
+        System.out.print("Enter your city :- ");
+        city = sc.nextLine();
+        System.out.print("Enter your state:- ");
+        state = sc.nextLine();
+        System.out.print("Enter your zip code :- ");
+        zipCode = sc.nextLine();
+        System.out.print("Enter your phone number :- ");
+        phoneNumber = sc.nextLine();
+        System.out.print("Enter your email :- ");
+        email = sc.nextLine();
+    }
 
+    public int duplicate(){
+        for (int i=0; i<book.size(); i++) {
+            if (firstName.equals(book.get(i).firstName)){
+                return 1;
+            }
+        }
+        return 0;
+    }
 
-            //System.out.println("Contact already present");
+    public void searchPeopleThroughState(){
+        System.out.println("Enter State's name which you want to search :- ");
+        String nameState = sc.nextLine();
+        for (int i=0; i<book.size(); i++) {
+            if (nameState.equals(book.get(i).state)){
 
-
-            System.out.print("Enter your last name :- ");
-            lastName = sc.nextLine();
-            System.out.print("Enter your address :- ");
-            address = sc.nextLine();
-            System.out.print("Enter your city :- ");
-            city = sc.nextLine();
-            System.out.print("Enter your state:- ");
-            state = sc.nextLine();
-            System.out.print("Enter your zip code :- ");
-            zipCode = sc.nextLine();
-            System.out.print("Enter your phone number :- ");
-            phoneNumber = sc.nextLine();
-            System.out.print("Enter your email :- ");
-            email = sc.nextLine();
-
+            }
+        }
+//        for (int i=0; i<addBooks.size();i++){
+//            for (int j=0; j<addBooks.get(i).size(); j++){
+//                if (addBooks.get(i).get(j).state.equals(nameState)){
+//                    printBookThroughBookObject(addBooks.get(i).get(j));
+//                }
+//            }
+//        }
     }
 
     public void addContact(){
         System.out.println("Enter the details of contact :- ");
         scan();
-        AddressBookContact ab = new AddressBookContact(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
-        boolean value=checkDuplicateContact(firstName);
-        if(value==true) {
-            System.out.println("Contact already present");
+        if (duplicate()==1) {
+            System.out.println("Sorry the contact already exists, thus the contact cannot be added");
         }
         else {
+            AddressBookContact ab = new AddressBookContact(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
             book.add(ab);
         }
     }
@@ -109,19 +128,6 @@ public class AddressBookContact {
         book.set(i,abc);
     }
 
-    public boolean checkDuplicateContact(String firstName){
-
-        int i;
-        for (i=0 ; i<book.size(); i++){
-            if (book.get(i).firstName.equals(this.firstName)){
-                return true;
-            }
-
-        }
-        return false;
-    }
-
-
     public void deleteContact(){
         System.out.print("Enter name of person whose you want to delete :- ");
         String name = sc.nextLine();
@@ -138,19 +144,32 @@ public class AddressBookContact {
     public void printBook(){
         for (int i=0; i<book.size(); i++){
             System.out.println("Contact "+(i+1) +"\n");
-            System.out.println("First name "+book.get(i).firstName);
-            System.out.println("Last Name "+book.get(i).lastName);
-            System.out.println("Address "+book.get(i).address);
-            System.out.println("City "+book.get(i).city);
-            System.out.println("State "+book.get(i).state);
-            System.out.println("Zipcode "+book.get(i).zipCode);
-            System.out.println("Phone Number "+book.get(i).phoneNumber);
-            System.out.println("Email id "+book.get(i).email);
+            System.out.println(book.get(i).firstName);
+            System.out.println(book.get(i).lastName);
+            System.out.println(book.get(i).address);
+            System.out.println(book.get(i).city);
+            System.out.println(book.get(i).state);
+            System.out.println(book.get(i).zipCode);
+            System.out.println(book.get(i).phoneNumber);
+            System.out.println(book.get(i).email);
             System.out.println();
         }
     }
 
+    int contact = 1;
+
+    public void printBookThroughBookObject(AddressBookContact addressBookContact){
+        System.out.println("Contact "+(contact++) +"\n");
+        System.out.println(addressBookContact.firstName);
+        System.out.println(addressBookContact.lastName);
+        System.out.println(addressBookContact.address);
+        System.out.println(addressBookContact.city);
+        System.out.println(addressBookContact.state);
+        System.out.println(addressBookContact.zipCode);
+        System.out.println(addressBookContact.phoneNumber);
+        System.out.println(addressBookContact.email);
+        System.out.println();
+
+    }
+
 }
-
-
-
