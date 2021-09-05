@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -250,27 +252,24 @@ public class AddressBookUsingLinkedlist {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter to view persons of 1.City 2.State");
         int input = sc.nextInt();
-        ArrayList<String> check = new ArrayList<String>();
-        if (input==1) {
-            for(String i: personInCity.values()) {
-                if (!check.contains(i)) {
-                    check.add(i);
-                    System.out.println("Count of "+ i + " is " +Collections.frequency(personInCity.values(), i));
-                }
 
-            }
+        if (input==1) {
+            Map<String, Long> count = personInCity.values().stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            count.keySet().stream().forEach(n -> {
+                System.out.println(n + " : " + count.get(n));
+            });
         }
         else {
-            for(String i:personInState.values()) {
-                if (!check.contains(i)) {
-                    check.add(i);
-                    System.out.println("Count of "+i+ " is " +Collections.frequency(personInState.values(), i));
-                }
-            }
+            Map<String, Long> count = personInState.values().stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            count.keySet().stream().forEach(n -> {
+                System.out.println(n + " : " + count.get(n));
+            });
+        }
+
         }
     }
 
 
-}
+
 
 
