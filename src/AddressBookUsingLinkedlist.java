@@ -169,18 +169,18 @@ public class AddressBookUsingLinkedlist {
         }
     }
 
-    public boolean duplicateContact(String FirstName){
-        for(int i=0;i<allBooks.size();i++){
-            for (int j=0;j<singlebook.size();j++){
-                if(allBooks.get(i).get(j).FirstName==FirstName)
-                {
-                    return true;
-                }
+
+    public boolean duplicateContact(String FirstName) {
+
+        ArrayList<String> duplicateCheck = new ArrayList<>();
+        for (int i = 0; i < allBooks.size(); i++) {
+            for (int j = 0; j < singlebook.size(); j++) {
+                duplicateCheck.add(allBooks.get(i).get(j).FirstName);
             }
         }
+        if (duplicateCheck.stream().anyMatch(n -> FirstName.equals(n))) return true;
         return false;
     }
-
     public void printAllBooks(){
         for(int i=0;i<allBooks.size();i++) {
             System.out.println("Print contact of Book: "+i+1);
