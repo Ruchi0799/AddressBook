@@ -1,5 +1,5 @@
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
+
 
 class AddressBookComputation1{
     public String FirstName;
@@ -109,6 +109,11 @@ public class AddressBookUsingLinkedlist {
     Scanner sc = new Scanner(System.in);
     public LinkedList<AddressBookComputation1> singlebook;
     public LinkedList<LinkedList<AddressBookComputation1>> allBooks=new LinkedList<LinkedList<AddressBookComputation1>>();
+   // public Map<String,LinkedList<AddressBookComputation1>> cityDict=new HashMap<String,LinkedList<AddressBookComputation1>>();
+    LinkedList<AddressBookComputation1> values=new LinkedList<AddressBookComputation1>();
+    public Map<AddressBookComputation1, String> cityDict=new HashMap<AddressBookComputation1, String>();
+    public HashMap<String, String> personInCity = new HashMap<String, String>();
+    public HashMap<String, String> personInState = new HashMap<String, String>();
 
     public void addNewBook(){
         singlebook=new LinkedList<AddressBookComputation1>();
@@ -142,8 +147,28 @@ public class AddressBookUsingLinkedlist {
             String Email = sc.next();
             AddressBookComputation1 addressBookComputation1 = new AddressBookComputation1(FirstName, LastName, Address, City, State, ZipCode, PhoneNumber, Email);
             allBooks.get(index1).add(addressBookComputation1);
+            String value1 = FirstName+ " " +LastName;
+            personInCity.put(value1, City);
+            personInState.put(value1, State);
         }
 
+
+        }
+
+    public void viewPersonByCityState() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("View person by 1.City 2.State: ");
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            for (String i : personInCity.keySet()) {
+                System.out.println(i + " lives in city " +personInCity.get(i));
+            }
+        }
+        else {
+            for (String i : personInState.keySet()) {
+                System.out.println(i + " lives in city " +personInState.get(i));
+            }
+        }
     }
 
     public boolean duplicateContact(String FirstName){
@@ -194,13 +219,12 @@ public class AddressBookUsingLinkedlist {
             }
         }
     }
-    public void editContact(){
+    public void editContact() {
         System.out.println("Enter Name of contact you want to edit");
-        String FirstName= sc.next();
-        for(int i=0;i<allBooks.size();i++){
-            for (int j=0;j<singlebook.size();j++){
-                if(allBooks.get(i).get(j).FirstName.equals(FirstName))
-                {
+        String FirstName = sc.next();
+        for (int i = 0; i < allBooks.size(); i++) {
+            for (int j = 0; j < singlebook.size(); j++) {
+                if (allBooks.get(i).get(j).FirstName.equals(FirstName)) {
                     System.out.println("Enter First name");
                     allBooks.get(i).get(j).FirstName = sc.next();
                     System.out.println("Enter Last name");
@@ -215,6 +239,8 @@ public class AddressBookUsingLinkedlist {
                     allBooks.get(i).get(j).ZipCode = sc.nextInt();
                     System.out.println("Enter Email");
                     allBooks.get(i).get(j).Email = sc.next();
+                    personInCity.put(singlebook.get(j).FirstName + " " + singlebook.get(j).LastName, singlebook.get(j).City);
+                    personInState.put(singlebook.get(j).FirstName + " " + singlebook.get(j).LastName, singlebook.get(j).State);
 
                 }
 
@@ -222,4 +248,31 @@ public class AddressBookUsingLinkedlist {
         }
     }
 
+    public void countPersonsCityState() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter to view persons of 1.City 2.State");
+        int input = sc.nextInt();
+        ArrayList<String> check = new ArrayList<String>();
+        if (input==1) {
+            for(String i: personInCity.values()) {
+                if (!check.contains(i)) {
+                    check.add(i);
+                    System.out.println("Count of "+ i + " is " +Collections.frequency(personInCity.values(), i));
+                }
+
+            }
+        }
+        else {
+            for(String i:personInState.values()) {
+                if (!check.contains(i)) {
+                    check.add(i);
+                    System.out.println("Count of "+i+ " is " +Collections.frequency(personInState.values(), i));
+                }
+            }
+        }
+    }
+
+
 }
+
+
