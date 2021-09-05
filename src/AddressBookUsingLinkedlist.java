@@ -151,8 +151,6 @@ public class AddressBookUsingLinkedlist {
             personInCity.put(value1, City);
             personInState.put(value1, State);
         }
-
-
         }
 
     public void viewPersonByCityState() {
@@ -197,7 +195,6 @@ public class AddressBookUsingLinkedlist {
             for (int j=0;j<singlebook.size();j++){
                 if(allBooks.get(i).get(j).FirstName==FirstName);
                 allBooks.get(i).remove(j);
-
             }
     }
     }
