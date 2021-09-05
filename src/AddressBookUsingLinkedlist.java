@@ -206,20 +206,17 @@ public class AddressBookUsingLinkedlist {
     public void searchContact() {
         System.out.println("Enter state of contact you want to search");
         String state = sc.next();
+
         for (int i = 0; i < allBooks.size(); i++) {
-            for (int j = 0; j < singlebook.size(); j++) {
-                System.out.println(allBooks.get(i).get(j).State);
-                System.out.println(state);
-                System.out.println(allBooks.get(i).get(j).State.equals(state));
-                if (allBooks.get(i).get(j).State.equals(state)) {
-
-                    System.out.println("Print contact of Book: "+i+1);
-                    System.out.println(allBooks.get(i));
-                }
-
+            //for (int j = 0; j < singlebook.size(); j++) {
+                allBooks.get(i).stream().forEach(n -> {
+                    if (state.equals(n.State)){
+                        System.out.println(n);
+                    }
+                });
             }
         }
-    }
+
     public void editContact() {
         System.out.println("Enter Name of contact you want to edit");
         String FirstName = sc.next();
