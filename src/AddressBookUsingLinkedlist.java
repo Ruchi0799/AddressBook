@@ -248,6 +248,15 @@ public class AddressBookUsingLinkedlist {
         }
     }
 
+    public void sortList() {
+        ArrayList<String> duplicateCheck = new ArrayList<>();
+        for (int i = 0; i < allBooks.size(); i++) {
+           List sortedList= allBooks.get(i).stream().sorted(((o1, o2) -> o1.FirstName.compareTo(o2.FirstName))).collect(Collectors.toList());
+            System.out.println(sortedList);
+
+        }
+    }
+
     public void countPersonsCityState() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter to view persons of 1.City 2.State");
