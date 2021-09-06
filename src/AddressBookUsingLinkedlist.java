@@ -248,6 +248,38 @@ public class AddressBookUsingLinkedlist {
         }
     }
 
+    public void sortCityZipState() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter to Search According to 1.City 2.State 3.Zip");
+        int input = sc.nextInt();
+        switch(input) {
+            case 1:
+                for (int i = 0; i < allBooks.size(); i++) {
+                    List sortedListCity= allBooks.get(i).stream().sorted(((o1, o2) -> o1.City.compareTo(o2.City))).collect(Collectors.toList());
+                    System.out.println(sortedListCity);
+
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < allBooks.size(); i++) {
+                    List sortedListState= allBooks.get(i).stream().sorted(((o1, o2) -> o1.State.compareTo(o2.State))).collect(Collectors.toList());
+                    System.out.println(sortedListState);
+
+                }
+                break;
+
+            case 3:
+                for (int i = 0; i < allBooks.size(); i++) {
+                    List sortedListZip= allBooks.get(i).stream().sorted(Comparator.comparingInt(AddressBookComputation1::getZipCode)).collect(Collectors.toList());
+                    System.out.println(sortedListZip);
+
+                }
+                break;
+        }
+    }
+
+
     public void sortList() {
         ArrayList<String> duplicateCheck = new ArrayList<>();
         for (int i = 0; i < allBooks.size(); i++) {
